@@ -131,6 +131,22 @@ private fun Preview(){
 }
 
 @Composable
+fun ReturnFAB(){
+    FloatingActionButton(
+        onClick = {},
+        containerColor = Color.White,
+        shape = RoundedCornerShape(20.dp),
+        modifier = Modifier.size(48.dp),
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.ic_arrow),
+            contentDescription = null,
+            tint = Color.Black
+        )
+    }
+}
+
+@Composable
 private fun CarPhotoCard(carModel: String, carRating: String, reviewsCount: String, carImage: Int){
     Card(
         modifier = Modifier
@@ -144,18 +160,7 @@ private fun CarPhotoCard(carModel: String, carRating: String, reviewsCount: Stri
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                FloatingActionButton(
-                    onClick = {},
-                    containerColor = Color.White,
-                    shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.size(48.dp),
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_arrow),
-                        contentDescription = null,
-                        tint = Color.Black
-                    )
-                }
+                ReturnFAB()
                 Spacer(
                     modifier = Modifier.weight(1f)
                         .size(10.dp)

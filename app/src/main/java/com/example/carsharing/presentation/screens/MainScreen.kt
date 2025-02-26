@@ -68,7 +68,9 @@ fun MainScreen(){
 
         ){
             Row (
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 40.dp),
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -116,6 +118,12 @@ fun MainScreen(){
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    MainScreen()
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -194,12 +202,11 @@ private fun NavBar(){
 }
 
 @Composable
-private fun ProfileIcon(){
+fun ProfileIcon(){
     Image(
         painter = painterResource(R.drawable.img),
         contentDescription = "Profile image",
         modifier = Modifier.size(48.dp)
-            .offset(-16.dp, 22.dp)
             .clip(RoundedCornerShape(20.dp)),
         alignment = Alignment.TopEnd
     )
@@ -238,7 +245,7 @@ private fun BrandCard(){
 }
 
 @Composable
-fun CarCard() {
+private fun CarCard() {
     Box{
         Card(
             modifier = Modifier
@@ -312,11 +319,5 @@ fun CarCard() {
                 .size(width = 203.dp, height = 164.dp)
         )
     }
-
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    //MainScreen()
-}
