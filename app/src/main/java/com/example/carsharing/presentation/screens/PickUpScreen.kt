@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.carsharing.R
 import com.example.carsharing.ui.theme.Blue10
-import com.example.carsharing.ui.theme.Gray10
+import com.example.carsharing.ui.theme.Grey10
 import ru.sulgik.mapkit.Animation
 import ru.sulgik.mapkit.MapKit
 import ru.sulgik.mapkit.compose.MapControllerEffect
@@ -155,11 +155,11 @@ private fun CarCard() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(text = "Automatic", color = Gray10, fontSize = 12.sp)
+                        Text(text = "Automatic", color = Grey10, fontSize = 12.sp)
                         Spacer(modifier = Modifier.width(16.dp))
-                        Text(text = "7 seats", color = Gray10, fontSize = 12.sp)
+                        Text(text = "7 seats", color = Grey10, fontSize = 12.sp)
                         Spacer(modifier = Modifier.width(16.dp))
-                        Text(text = "Diesel", color = Gray10, fontSize = 12.sp)
+                        Text(text = "Diesel", color = Grey10, fontSize = 12.sp)
                     }
                     Row (
                         modifier = Modifier.fillMaxWidth(),
@@ -178,7 +178,7 @@ private fun CarCard() {
                                 modifier = Modifier.padding(bottom = 1.dp, start = 4.dp),
                                 text = "per day",
                                 fontSize = 12.sp,
-                                color = Gray10
+                                color = Grey10
                             )
                         }
                         Row (
@@ -193,7 +193,7 @@ private fun CarCard() {
                                 modifier = Modifier.padding(bottom = 1.dp, start = 4.dp),
                                 text = "per hour",
                                 fontSize = 12.sp,
-                                color = Gray10
+                                color = Grey10
                             )
                         }
                     }

@@ -43,7 +43,7 @@ import com.example.carsharing.R
 import com.example.carsharing.ui.theme.Background
 import com.example.carsharing.ui.theme.Blue10
 import com.example.carsharing.ui.theme.Blue20
-import com.example.carsharing.ui.theme.Gray10
+import com.example.carsharing.ui.theme.Grey10
 import com.example.carsharing.ui.theme.Yellow1
 
 
@@ -99,7 +99,7 @@ fun CarPageScreen(){
                     PlanCard(80, R.drawable.ic_clock, Blue10, Blue20)
                 }
                 item {
-                    PlanCard(80, R.drawable.ic_calendar, Gray10, Background)
+                    PlanCard(80, R.drawable.ic_calendar, Grey10, Background)
                 }
             }
             Spacer(Modifier.height(24.dp))
@@ -205,7 +205,7 @@ private fun CarPhotoCard(carModel: String, carRating: String, reviewsCount: Stri
                 Text(
                     text = "($reviewsCount Reviews)",
                     fontSize = 14.sp,
-                    color = Gray10
+                    color = Grey10
                 )
             }
             Image(
@@ -269,7 +269,7 @@ private fun PlanCard(cost: Int, iconId: Int, color: Color, secColor: Color){
                 Text(
                     text = "Best for business appointments",
                     fontSize = 14.sp,
-                    color = Gray10
+                    color = Grey10
                 )
             }
         }
@@ -282,7 +282,7 @@ private fun SpecsCard(spec: String, info: String){
     Card(
         modifier = Modifier
             .size(width = 124.dp, height = 48.dp),
-        border = BorderStroke(1.dp, Gray10),
+        border = BorderStroke(1.dp, Grey10),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(
@@ -314,7 +314,7 @@ private fun LocationCard(location: String){
             .padding(start = 20.dp, end = 20.dp)
             .fillMaxWidth()
             .height(40.dp),
-        border = BorderStroke(1.dp, Gray10),
+        border = BorderStroke(1.dp, Grey10),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row (
@@ -357,7 +357,7 @@ private fun PickUp(){
             Text(
                 text = "/ hour",
                 fontSize = 21.sp,
-                color = Gray10
+                color = Grey10
             )
         }
         Spacer(modifier = Modifier.weight(1f))

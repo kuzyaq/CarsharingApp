@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.carsharing.presentation.screens.CarPageScreen
+import com.example.carsharing.presentation.screens.LoginScreen
 import com.example.carsharing.presentation.screens.MainScreen
 import com.example.carsharing.presentation.screens.PickUpScreen
 import com.example.carsharing.presentation.screens.initMapKit
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CarsharingTheme {
                 //MainScreen()
-                PickUpScreen()
+                LoginScreen()
             }
         }
     }

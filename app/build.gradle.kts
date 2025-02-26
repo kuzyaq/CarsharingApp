@@ -59,4 +59,5 @@ dependencies {
 
     implementation("ru.sulgik.mapkit:yandex-mapkit-kmp:0.1.1") // main module
     implementation("ru.sulgik.mapkit:yandex-mapkit-kmp-compose:0.1.1")
+    implementation("androidx.compose.material3:material3:1.3.1")
 }

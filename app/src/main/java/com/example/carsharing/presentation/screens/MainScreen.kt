@@ -51,7 +51,7 @@ import com.example.carsharing.R
 import com.example.carsharing.domain.navItem
 import com.example.carsharing.ui.theme.Background
 import com.example.carsharing.ui.theme.Blue10
-import com.example.carsharing.ui.theme.Gray10
+import com.example.carsharing.ui.theme.Grey10
 
 @Composable
 fun MainScreen(){
@@ -192,7 +192,7 @@ private fun NavBar(){
                         imageVector = ImageVector.vectorResource(navItem.icon),
                         contentDescription = navItem.label,
                         tint = if (selectedIndex == index) Blue10
-                        else Gray10
+                        else Grey10
                     )
                 },
             )
