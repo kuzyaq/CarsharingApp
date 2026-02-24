@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Carsharing.ComposeSplash" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">#FFFFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_car_splash2</item>
+        <item name="postSplashScreenTheme">@style/Theme.Carsharing</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+    </style>
+</resources>

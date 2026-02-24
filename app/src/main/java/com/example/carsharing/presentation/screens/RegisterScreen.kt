@@ -1,6 +1,5 @@
 package com.example.carsharing.presentation.screens
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -57,31 +56,49 @@ import com.example.carsharing.ui.theme.Grey10
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(
-    onLoginClick: (email: String, password: String, role: UserRole) -> Unit,
-    onRegisterClick: () -> Unit
+fun RegisterScreen(
+    onRegisterClick: (fullName: String, email: String, password: String) -> Unit,
+    onLoginClick: () -> Unit
 ) {
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var isAdmin by remember { mutableStateOf(false) }
 
     Column (
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 20.dp, end = 20.dp, top = 80.dp),
 
-    ){
+        ){
+
         Text(
-            text = "Добро пожаловать!",
+            text = "Nice to know you!",
             fontWeight = FontWeight.Medium,
             fontSize = 18.sp
         )
         Spacer(Modifier.height(4.dp))
         Text(
-            text = "Введите свой номер телефона, чтобы продолжить",
+            text = "it's your first time to use Carsharing",
             color = Grey10,
             fontSize = 14.sp
         )
+
+        Spacer(Modifier.height(28.dp))
+        Text(
+            text = "Full name",
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp
+        )
+        Spacer(Modifier.height(4.dp))
+        CustomTextField(
+            label = "Your full name",
+            value = name,
+            onValueChange = { name = it },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next
+        )
+
         Spacer(Modifier.height(28.dp))
         Text(
             text = "Email address",
@@ -97,26 +114,8 @@ fun LoginScreen(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Next
         )
+
         Spacer(Modifier.height(28.dp))
-        // Примитивный выбор роли для демонстрации ролевой модели
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Войти как:",
-                fontSize = 14.sp,
-                color = Grey10
-            )
-            Spacer(Modifier.width(8.dp))
-            Text(
-                text = if (isAdmin) "Администратор" else "Клиент",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
-                color = Blue10,
-                modifier = Modifier.clickable { isAdmin = !isAdmin }
-            )
-        }
-        Spacer(Modifier.height(16.dp))
         Text(
             text = "Password",
             fontWeight = FontWeight.Medium,
@@ -132,23 +131,16 @@ fun LoginScreen(
             imeAction = ImeAction.Done,
             isPasswordField = true
         )
+
         Spacer(Modifier.height(32.dp))
         AuthButton(
             onClickListener = {
-                val role = if (isAdmin) UserRole.ADMIN else UserRole.CLIENT
-                onLoginClick(email, password, role)
+                onRegisterClick(name, email, password)
             },
-            text = "Login"
-        )
-        Spacer(Modifier.height(14.dp))
-        Text(
-            text = "Forgot password?",
-            color = Grey10,
-            modifier = Modifier
-                .align(Alignment.End)
-                .clickable {  }
+            text = "Register"
         )
         Spacer(Modifier.height(28.dp))
+
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -160,7 +152,7 @@ fun LoginScreen(
                 color = Color.LightGray
             )
             Text(
-                text = "or login with",
+                text = "or register with",
                 color = Color.Black,
                 modifier = Modifier.padding(horizontal = 16.dp),
                 fontSize = 14.sp
@@ -187,14 +179,14 @@ fun LoginScreen(
             horizontalArrangement = Arrangement.Center
         ){
             Text(
-                text = "Didn't have an account? ",
+                text = "Already have a Carsharing account? ",
                 color = Grey10
             )
             Text(
-                text = "Register",
+                text = "Login",
                 fontWeight = FontWeight.Medium,
                 color = Blue10,
-                modifier = Modifier.clickable { onRegisterClick() }
+                modifier = Modifier.clickable { onLoginClick() }
             )
         }
 
@@ -204,115 +196,11 @@ fun LoginScreen(
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    LoginScreen(
-        onLoginClick = { _, _, _ -> },
-        onRegisterClick = {}
+    RegisterScreen(
+        onRegisterClick = { _, _, _ -> },
+        onLoginClick = {}
     )
 }
 
-@Composable
-fun CustomIconButton(icon: Int){
-    IconButton(
-        onClick = {}
-    ) {
-        Box(
-            modifier = Modifier
-                .size(92.dp)
-                .clip(CircleShape)
-                .border(1.dp, Color.LightGray, CircleShape)
-                .padding(8.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                painter = painterResource(id = icon),
-                contentDescription = null,
-                modifier = Modifier.size(48.dp)
-            )
-        }
-    }
-}
 
-@Composable
-fun AuthButton(onClickListener: () -> Unit, text: String){
-    Button(
-        onClick = onClickListener,
-        shape = RoundedCornerShape(15.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Blue10
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Text(
-            text = text,
-            color = Color.White,
-            fontWeight = FontWeight.Medium,
-            fontSize = 18.sp,
-            modifier = Modifier.padding(vertical = 8.dp)
-        )
-    }
-}
 
-@Composable
-fun CustomTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier,
-    label: String,
-    keyboardType: KeyboardType,
-    imeAction: ImeAction,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    isPasswordField: Boolean = false
-) {
-    var passwordVisible by remember { mutableStateOf(false) }
-
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = {
-            Text(
-                text = label,
-                color = Grey10,
-                fontSize = 14.sp
-            )
-                },
-        modifier = modifier,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = keyboardType,
-            imeAction = imeAction
-        ),
-        visualTransformation = if (isPasswordField && !passwordVisible) {
-            PasswordVisualTransformation()
-        } else {
-            visualTransformation
-        },
-        trailingIcon = if (isPasswordField) {
-            {
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    val iconRes = if (!passwordVisible) {
-                        R.drawable.ic_visibility
-                    } else {
-                        R.drawable.ic_visibility_off
-                    }
-                    Icon(
-                        painter = painterResource(id = iconRes),
-                        contentDescription = if (passwordVisible) "Скрыть пароль" else "Показать пароль"
-                    )
-                }
-            }
-        } else {
-            trailingIcon
-        },
-        shape = RoundedCornerShape(20.dp),
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = Color.White,
-            unfocusedContainerColor = Color.White,
-            unfocusedBorderColor = Grey10,
-            focusedBorderColor = Blue10,
-            unfocusedTextColor = Color.Black,
-            focusedTextColor = Color.Black
-        )
-    )
-}

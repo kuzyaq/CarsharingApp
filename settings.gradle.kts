@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Carsharing"
 include(":app")
+include(":server")
  

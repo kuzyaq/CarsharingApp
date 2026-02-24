@@ -66,7 +66,7 @@ fun PickUpScreen() {
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 50.dp)
             ){
-                ReturnFAB()
+                ReturnFAB(onBackClick = { /* навигация назад будет проброшена позже через NavHost */ })
                 Spacer(modifier = Modifier.weight(1f))
                 Column {
                     ProfileIcon()
@@ -94,7 +94,7 @@ fun PickUpScreen() {
 @Composable
 @Preview
 fun preview() {
-    CarCard()
+    PickUpScreen()
 }
 
 @Composable

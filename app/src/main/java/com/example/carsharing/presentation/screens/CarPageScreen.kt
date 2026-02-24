@@ -48,14 +48,25 @@ import com.example.carsharing.ui.theme.Yellow1
 
 
 @Composable
-fun CarPageScreen(){
+fun CarPageScreen(
+    carId: String,
+    onBackClick: () -> Unit,
+    onPickUpClick: (String) -> Unit
+) {
     Box(
         Modifier
             .background(Color.White)
             .fillMaxSize()
     ){
         Column {
-            CarPhotoCard("S 500 Sedan", "4.9", "230", R.drawable.img_3)
+            // TODO: по carId в будущем будем подгружать реальные данные авто
+            CarPhotoCard(
+                carModel = "S 500 Sedan",
+                carRating = "4.9",
+                reviewsCount = "230",
+                carImage = R.drawable.img_3,
+                onBackClick = onBackClick
+            )
             Spacer(Modifier.height(20.dp))
             Text(
                 text = "Specs",
@@ -113,27 +124,15 @@ fun CarPageScreen(){
             Spacer(Modifier.height(16.dp))
             LocationCard("200-298 Clipper St San Francisco, CA 94114, USA")
             Spacer(Modifier.height(20.dp))
-            PickUp()
+            PickUp(onPickUpClick = { onPickUpClick(carId) })
         }
     }
 }
 
 @Composable
-@Preview
-private fun Preview(){
-    //CarPhotoCard("S 500 Sedan", "4.9", "230")
-    //PlanCard(80, R.drawable.ic_clock, Blue10)
-    //SpecsCard("Power", "429 hp @ 6,100 rpm")
-    //LocationCard("200-298 Clipper St San Francisco, CA 94114, USA")
-    //PickUp()
-    //CarPageScreen()
-
-}
-
-@Composable
-fun ReturnFAB(){
+fun ReturnFAB(onBackClick: () -> Unit) {
     FloatingActionButton(
-        onClick = {},
+        onClick = onBackClick,
         containerColor = Color.White,
         shape = RoundedCornerShape(20.dp),
         modifier = Modifier.size(48.dp),
@@ -147,7 +146,13 @@ fun ReturnFAB(){
 }
 
 @Composable
-private fun CarPhotoCard(carModel: String, carRating: String, reviewsCount: String, carImage: Int){
+private fun CarPhotoCard(
+    carModel: String,
+    carRating: String,
+    reviewsCount: String,
+    carImage: Int,
+    onBackClick: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -160,7 +165,7 @@ private fun CarPhotoCard(carModel: String, carRating: String, reviewsCount: Stri
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                ReturnFAB()
+                ReturnFAB(onBackClick = onBackClick)
                 Spacer(
                     modifier = Modifier.weight(1f)
                         .size(10.dp)
@@ -337,7 +342,9 @@ private fun LocationCard(location: String){
 }
 
 @Composable
-private fun PickUp(){
+private fun PickUp(
+    onPickUpClick: () -> Unit
+) {
     Row(
         Modifier
             .padding(20.dp)
@@ -363,7 +370,7 @@ private fun PickUp(){
         Spacer(modifier = Modifier.weight(1f))
         Button(
             modifier = Modifier.size(width = 150.dp, height = 44.dp),
-            onClick = { /* TODO */ },
+            onClick = onPickUpClick,
             colors = ButtonDefaults.buttonColors(
                 containerColor = Blue10
             ),
